@@ -2,6 +2,7 @@ name: il
 description: "A new Flutter package project."
 version: 0.0.1
 homepage:
+publish_to: none
 
 environment:
   sdk: ^3.6.0
@@ -11,10 +12,21 @@ dependencies:
   flutter:
     sdk: flutter
 
+  pub:
+    git:
+      url: https://github.com/quochoang228/pub.git
+      ref: main
+  
+  logs:
+    git:
+      url: https://github.com/quochoang228/logs.git
+      ref: main
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  test: ^1.25.8
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

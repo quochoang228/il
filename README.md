@@ -1,39 +1,30 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Integration Layer
+Package giúp giao tiếp giữa các micro frontends với Event Bus, Middleware và
+GetIt.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+1️⃣ Yêu cầu chính của Integration Layer
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+    ✅ Cho phép các micro frontends giao tiếp mà không phụ thuộc chặt chẽ vào nhau (loose coupling).
+    ✅ Hỗ trợ event-driven communication hoặc message passing.
+    ✅ Có thể gửi yêu cầu API đến backend thông qua API Gateway.
+    ✅ Dễ mở rộng khi thêm micro frontends mới.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
 
-## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
+## Cách sử dụng
 ```dart
-const like = 'sample';
-```
+final integrationLayer = IntegrationLayer();
 
-## Additional information
+// Đăng ký dịch vụ
+integrationLayer.registerService<AuthService>(AuthService());
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+// Thêm Middleware
+integrationLayer.addMiddleware(LogMiddleware());
+integrationLayer.addMiddleware(AuthMiddleware((event) => UserSession.isLoggedIn));
+
+// Phát sự kiện với Throttling (chống spam)
+integrationLayer.emit(UserActivityEvent(), throttle: Duration(seconds: 1));
+
+// Phát sự kiện với Debouncing (chỉ phát nếu không có sự kiện mới trong 500ms)
+integrationLayer.emit(SearchEvent(query: "Flutter"), debounce: Duration(milliseconds: 500));
