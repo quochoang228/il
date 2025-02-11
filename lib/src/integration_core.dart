@@ -1,4 +1,5 @@
-import 'package:pub/pub.dart';
+
+import 'package:get_it/get_it.dart';
 
 import 'event_bus.dart';
 import 'middleware.dart';

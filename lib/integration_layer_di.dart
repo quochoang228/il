@@ -1,5 +1,5 @@
+import 'package:get_it/get_it.dart';
 import 'package:il/integration_layer.dart';
-import 'package:pub/pub.dart';
 
 class IntegrationLayerDi {
   // Khởi tạo GetIt

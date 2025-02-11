@@ -12,10 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  pub:
-    git:
-      url: https://github.com/quochoang228/pub.git
-      ref: main
+  dio: ^5.8.0+1
+  get_it: ^8.0.3
+  connectivity_plus: ^6.1.3
   
   logs:
     git:
